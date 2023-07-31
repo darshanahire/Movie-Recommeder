@@ -75,3 +75,19 @@
   width: 250px;
   border-radius: 10px;
 }
+
+.reconded-movie-poster-parent{
+  display: flex;
+  overflow: scroll;
+}
+
+.popular-poster-parent{
+
+}
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+  flex-direction: column-reverse;
+}

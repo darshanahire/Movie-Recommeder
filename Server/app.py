@@ -1,17 +1,17 @@
-from flask import Flask, jsonify
-from flask_cors import CORS, cross_origin
-import pickle
-import requests
 import pandas as pd
+from flask.helpers import send_from_directory
+from flask_cors import CORS, cross_origin
+from flask import Flask, request, render_template, jsonify
+import requests
 
 newMovies = pd.read_pickle('movies.pkl')
 similarity = pd.read_pickle('similarity.pkl')
+movieNames = pd.read_pickle('movieNames.pkl')
 
 def getMovieDetaile(movieId):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=2144c30ff91ce4ad919d206c68ffe29c'.format(movieId))
     data = response.json()
     return data
-
 
 def recomend(movie):
     movie = movie.lower()
@@ -32,22 +32,32 @@ def recomend(movie):
     return jsonify(result)
 
 
-app = Flask(__name__)
-# app = Flask(__name__, static_folder='movie-recommendation-system/build', static_url_path='/')
+# app = Flask(__name__)
+app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
 CORS(app)
-
-@app.route('/')
-@cross_origin()
-def Home():
-    # print(list(newMovies['title'].values))
-    # return list(newMovies['title'].values)
-    return "hello world"
 
 @app.route('/recommend/<movie>',methods=['GET'])
 @cross_origin()
 def Recommended(movie):
     # print(movie)
     return recomend(movie)
+
+@app.route('/getmovienames',methods=['GET'])
+@cross_origin()
+def sendNames():
+    result = movieNames.to_dict()
+    return jsonify(result)
+
+@app.errorhandler(404)
+@cross_origin()
+def not_found(e):
+    return app.send_static_file('index.html')
+
+
+@app.route('/')
+@cross_origin()
+def index():
+    return app.send_static_file('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
