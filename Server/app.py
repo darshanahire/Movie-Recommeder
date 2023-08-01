@@ -6,7 +6,6 @@ import requests
 
 newMovies = pd.read_pickle('movies.pkl')
 similarity = pd.read_pickle('similarity.pkl')
-movieNames = pd.read_pickle('movieNames.pkl')
 
 def getMovieDetaile(movieId):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=2144c30ff91ce4ad919d206c68ffe29c'.format(movieId))
@@ -41,12 +40,6 @@ CORS(app)
 def Recommended(movie):
     # print(movie)
     return recomend(movie)
-
-@app.route('/getmovienames',methods=['GET'])
-@cross_origin()
-def sendNames():
-    result = movieNames.to_dict()
-    return jsonify(result)
 
 @app.errorhandler(404)
 @cross_origin()
