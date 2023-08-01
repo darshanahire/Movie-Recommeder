@@ -91,3 +91,32 @@
   margin-top: 250px;
   flex-direction: column-reverse;
 }
+
+.selector{
+  min-width: 50%;
+}
+
+@media screen and (max-width:768px){
+  .recommended-movie, .movie-poster{
+    height: 500px;
+    width: 375px;
+    border-radius: 10px;
+  }
+  
+}
+
+.h-90{
+  height: 80vh;
+}
+
+.imgg{
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.imgg-mobile{
+  height: 80%;
+  width: 80%;
+  border-radius: 10px;
+}

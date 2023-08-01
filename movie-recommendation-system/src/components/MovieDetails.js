@@ -15,7 +15,7 @@ function MovieDetails() {
             setMovies(res.data?.results?.slice(1, 6))  
             setisloading(false)          
         })
-    }, [movie])
+    }, [url])
 
     return (
         <> {
@@ -48,7 +48,7 @@ function MovieDetails() {
             {
                 movies?.map(function (movie,key){
                 return (
-                    <Link key = {key} to={`/movie/${movie.title}`}><img className='recommended-movie mx-2' src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`} alt="No Image Found" /></Link>
+                    <Link key = {key} to={`/movie/${movie.title}`}><img className='recommended-movie mx-2' src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`} alt="Not Found" /></Link>
                 )})
             }
             </div>

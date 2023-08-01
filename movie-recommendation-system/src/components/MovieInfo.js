@@ -7,16 +7,16 @@ function MovieInfo() {
     let { movie } = useParams();
     const [movies, setMovies] = useState([]);
     const [currMovie, setCurrMovie] = useState(null);
-    let url = `http://127.0.0.1:5000/recommend/${movie}`
+    // let url = `http://127.0.0.1:5000/recommend/${movie}`
+    let url = `http://192.168.43.211/recommend/${movie}`
     useEffect(() => {
-        console.log(url);
         axios.get(url).then(async (res) => {
             setMovies(res.data?.data?.slice(1, 6));
             if(res.data.data != null) setCurrMovie(res.data.data[0]);
             setisloading(false);
             // console.log(res.data.data[0]);
         })
-    }, [movie])
+    }, [url])
 
     return (
         <>{isloading ? <> <div className="loader">
@@ -48,7 +48,7 @@ function MovieInfo() {
             {
                 movies?.map(function (movie,key){
                 return (
-                    <Link onClick={()=>{setisloading(true)}} key = {key} to={`/recommend/${movie?.title}`}><img className='recommended-movie mx-2' src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`} alt="No Image Found" /></Link>
+                    <Link onClick={()=>{setisloading(true)}} key = {key} to={`/recommend/${movie?.title}`}><img className='recommended-movie mx-2' src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`} alt="Not Found" /></Link>
                 )})
             }
             </div>

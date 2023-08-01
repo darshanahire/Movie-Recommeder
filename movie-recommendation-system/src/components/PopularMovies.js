@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams,Link } from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import axios from 'axios';
 
 function PopularMovies() {
@@ -13,7 +13,7 @@ function PopularMovies() {
             // console.log(res.data);
             setisloading(false)
         })
-    }, [])
+    }, [url])
 
     return (
         <> {

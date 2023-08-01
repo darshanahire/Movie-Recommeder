@@ -7,17 +7,18 @@ function BasicExample() {
   return (
     <Navbar expand="lg" bg="dark" variant="dark" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">The Movie Recommender</Navbar.Brand>
+        <Navbar.Brand >The Movie Recommender</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/popular">Popular</Nav.Link>
-            <Nav.Link href="/">Tv Shows</Nav.Link>
-            <NavDropdown title="Generes" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Drama</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Horror</NavDropdown.Item>
+            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link" to="/popular">Popular</Link>
+            <Link className="nav-link" to="/">Tv Shows</Link>
+            <NavDropdown title="Genres" id="basic-nav-dropdown">
+            <Link className="dropdown-item" to="/">Action</Link>
+            <Link className="dropdown-item" to="/">Comedy</Link>
+            <Link className="dropdown-item" to="/">Drama</Link>
+            <Link className="dropdown-item" to="/">Horror</Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
