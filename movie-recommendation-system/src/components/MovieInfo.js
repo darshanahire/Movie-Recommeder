@@ -7,8 +7,9 @@ function MovieInfo() {
     let { movie } = useParams();
     const [movies, setMovies] = useState([]);
     const [currMovie, setCurrMovie] = useState(null);
+    let url = `/recommend/${movie}`
     // let url = `http://127.0.0.1:5000/recommend/${movie}`
-    let url = `http://192.168.43.211/recommend/${movie}`
+    // let url = `http://192.168.43.211/recommend/${movie}`
     useEffect(() => {
         axios.get(url).then(async (res) => {
             setMovies(res.data?.data?.slice(1, 6));
