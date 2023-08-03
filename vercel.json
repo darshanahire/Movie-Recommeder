@@ -8,7 +8,18 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "api/app.py"
+            "dest": "api/app.py",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "OPTIONS",
+                "DELETE",
+                "HEAD",
+                "CONNECT",
+                "TRACE"
+            ]
         }
     ]
 }
