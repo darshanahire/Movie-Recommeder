@@ -1,7 +1,7 @@
 import pandas as pd
+from flask import Flask, jsonify
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
-from flask import Flask, request, render_template, jsonify
 import requests
 
 newMovies = pd.read_pickle('movies.pkl')
