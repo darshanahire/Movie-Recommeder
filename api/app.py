@@ -31,8 +31,8 @@ def recomend(movie):
     return jsonify(result)
 
 
-app = Flask(__name__)
-# app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
+# app = Flask(__name__)
+app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
 CORS(app)
 
 @app.route('/recommend/<movie>',methods=['GET'])
@@ -50,8 +50,7 @@ def not_found(e):
 @app.route('/')
 @cross_origin()
 def index():
-    return "hello world"
-    # return app.send_static_file('index.html')
+    return app.send_static_file('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
