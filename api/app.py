@@ -1,19 +1,18 @@
 import pandas as pd
 from flask import Flask, jsonify
 from flask.helpers import send_from_directory
-from flask_cors import CORS, cross_origin
+# from flask_cors import CORS, cross_origin
 import requests
-
-newMovies = pd.read_pickle('movies.pkl')
-similarity = pd.read_pickle('similarity.pkl')
 
 # app = Flask(__name__)
 app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
-CORS(app)
+# CORS(app)
 
 @app.route('/recommend/<movie>',methods=['GET'])
-@cross_origin()
+# @cross_origin()
 def Recommended(movie):
+    newMovies = pd.read_pickle('movies.pkl')
+    similarity = pd.read_pickle('similarity.pkl')
     movie = movie.lower()
     movie = movie.replace(r' ','-')
     currMovie = newMovies[newMovies['comp'] == movie]
@@ -36,12 +35,12 @@ def Recommended(movie):
     return jsonify(result)
 
 @app.errorhandler(404)
-@cross_origin()
+# @cross_origin()
 def not_found(e):
     return app.send_static_file('index.html')
 
 @app.route('/')
-@cross_origin()
+# @cross_origin()
 def index():
     return app.send_static_file('index.html')
 
