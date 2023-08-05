@@ -2,8 +2,13 @@ import pandas as pd
 from flask import jsonify
 import requests
 
-newMovies = pd.read_pickle('movies.pkl')
-similarity = pd.read_pickle('similarity.pkl')
+# newMovies = pd.read_pickle('movies.pkl')
+# similarity = pd.read_pickle('similarity.pkl')
+# newMovies = open('movies.pkl','rb')
+with open("similarity.pkl", 'rb') as k:
+    similarity=pd.read_pickle(k)
+with open("movies.pkl", 'rb') as f:
+    newMovies=pd.read_pickle(f)
 
 def getMovieDetaile(movieId):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=2144c30ff91ce4ad919d206c68ffe29c'.format(movieId))
