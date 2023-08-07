@@ -4,13 +4,17 @@ import pandas as pd
 from flask import jsonify
 import requests
 
-# newMovies = pd.read_pickle('movies.pkl')
-# similarity = pd.read_pickle('similarity.pkl')
 
-with open("similarity.pkl", 'rb') as k:
-    similarity=pd.read_pickle(k)
-with open("movies.pkl", 'rb') as f:
-    newMovies=pd.read_pickle(f)
+app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
+CORS(app)
+
+newMovies = pd.read_pickle('movies.pkl')
+similarity = pd.read_pickle('similarity.pkl')
+
+# with open("similarity.pkl", 'rb') as k:
+#     similarity=pd.read_pickle(k)
+# with open("movies.pkl", 'rb') as f:
+#     newMovies=pd.read_pickle(f)
 
 def getMovieDetaile(movieId):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=2144c30ff91ce4ad919d206c68ffe29c'.format(movieId))
@@ -35,8 +39,6 @@ def recomend(movie):
         result = {'found' : 1,'data':res}
     return jsonify(result)
 
-app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
-CORS(app)
 
 @app.route('/recommend/<movie>',methods=['GET'])
 @cross_origin()
